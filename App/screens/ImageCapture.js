@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Image, View, Button, FileSystem } from 'react-native';
+import { StyleSheet, Image, View, Button, FileSystem, TouchableOpacity, Text } from 'react-native';
 import { Audio } from 'expo-av';
-import { RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB, RECORDING_OPTION_ANDROID_AUDIO_ENCODER_DEFAULT } from 'expo-av/build/Audio';
-
+// const speech = require('@google-cloud/speech');
 // TODO: What to do with the module?
 
 const ImageCapture = ({navigation, route}) => {
@@ -18,7 +17,7 @@ const ImageCapture = ({navigation, route}) => {
           }); 
           console.log('Starting recording..');
           const recording = new Audio.Recording();
-          await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY,RECORDING_OPTION_ANDROID_AUDIO_ENCODER_DEFAULT);
+          await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
           await recording.startAsync(); 
           setRecording(recording);
           console.log('Recording started');
@@ -26,6 +25,9 @@ const ImageCapture = ({navigation, route}) => {
           console.error('Failed to start recording', err);
         }
       }
+
+
+ 
       
       async function stopRecording() {
         console.log('Stopping recording..');
@@ -33,20 +35,13 @@ const ImageCapture = ({navigation, route}) => {
         await Audio.setIsEnabledAsync(true);
         await recording.stopAndUnloadAsync();
         const audioUrl = recording.getURI(); 
-        
+      
+      
         console.log('Recording stopped and stored at', audioUrl);
         let sound = new Audio.Sound();
+
         try {
-            // await sound.loadAsync(require('' + audioUrl));
-            // console.log("playing")
-            // await sound.playAsync();
-            // // Your sound is playing!
-            
-            // // Don't forget to unload the sound from memory
-            // // when you are done using the Sound object
-            // await sound.unloadAsync();
-            // console.log("done")
-            // let csrftoken = Cookies.get('csrftoken');
+
             const data = new FormData();
             data.append('file', {
               uri: audioUrl,
@@ -76,11 +71,11 @@ const ImageCapture = ({navigation, route}) => {
   return (
       <View>
     <Image source={{uri : route.params.uri}} style={styles.stretch}/>
-    <Button
-    title={recording ? 'Stop Recording' : 'Start Recording'}
-    onPress={recording ? stopRecording : startRecording}
-   
-  />
+    <TouchableOpacity style={styles.button}
+
+    onPress={recording ? stopRecording : startRecording}>
+      <Text style={styles.text}>{recording ? 'Stop Recording' : 'Start Recording'}</Text>
+    </TouchableOpacity>
 
    </View>
     
@@ -95,8 +90,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
   },
   stretch: {
-    width : 300,
-    height: 200,
+    width : 400,
+    height: 500,
     resizeMode: 'stretch',
   },
+  button:{
+    height:200,
+    justifyContent:'center',
+    alignItems:'center'
+
+  },
+
 });

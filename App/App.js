@@ -6,18 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-// export default function App() {
-  
-//   return (
-//     <View style={styles.container}>
-//       <Tap></Tap>
-//     </View>
-//   );
-// }
-
-
-
-
 const Stack = createStackNavigator();
 
 const App = () => {

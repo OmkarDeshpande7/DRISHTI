@@ -40,7 +40,7 @@ export default function Tap(props) {
           <TouchableOpacity
             style={styles.button}
             onPress={takePicture}>
-            <Text style={styles.text}> Flip </Text>
+            <Text style={styles.text}> Click anywhere </Text>
           </TouchableOpacity>
         </View>
       </Camera>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     flexDirection:'column',
     alignItems: 'center',
+    backfaceVisibility:"visible",
   },
   text: {
     fontSize: 18,
