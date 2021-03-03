@@ -8,8 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@google-cloud/speech": "^4.2.0",
-    "@react-native-community/masked-view": "0.1.10",
+     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
     "events": "^3.2.0",

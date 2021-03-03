@@ -19,5 +19,6 @@ from mlmodel import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(urls)),
+    path('',include(urls)),     # navigate to the urls file in mlmodel app
 ]
+ 

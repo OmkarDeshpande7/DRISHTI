@@ -3,17 +3,26 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
+// default component to be rendered from file
 export default function Tap(props) {
+
+  //using react hook to store state in a functional component
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+ 
 
+  // this function gets executed when the component gets mounted
   useEffect(() => {
     (async () => {
+
+      //ask camera permissions asynchronously 
       const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
 
+
+  //asynchronous function to capture camera image
   const takePicture = async () => {
     console.log("Pressed " + this.camera)
     if (this.camera) {
@@ -32,6 +41,9 @@ export default function Tap(props) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+
+  // UI components rendering
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} 
@@ -48,6 +60,7 @@ export default function Tap(props) {
   );
 }
 
+// CSS stylesheet for the components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
