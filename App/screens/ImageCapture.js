@@ -42,6 +42,10 @@ const ImageCapture = ({ navigation, route }) => {
     const audioUrl = recording.getURI();    // get the recording uri at the local file storage.
 
 
+
+
+
+
     console.log('Recording stopped and stored at', audioUrl);
     let sound = new Audio.Sound();
 
@@ -72,7 +76,10 @@ const ImageCapture = ({ navigation, route }) => {
           'Content-Type': 'multipart/form-data',
         },
         body: data,     //added FormData object
-      }).then((response) => console.log(response));
+      }).then((response) => {
+        // console.log(response);
+        navigation.navigate('ResultPage', { uri: route.params.uri })
+      });
 
     } catch (error) {
       // An error occurred!
