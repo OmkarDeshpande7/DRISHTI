@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
 import * as Speech from 'expo-speech';
 
 // default component to be rendered from file
