@@ -8,7 +8,7 @@ export default function ResultPage(props) {
 
     useEffect(() => {
         // Update the document title using the browser API
-        Speech.speak("hello to result page");
+        Speech.speak("You will hear your output here !");
       });
   // UI components rendering
   return (

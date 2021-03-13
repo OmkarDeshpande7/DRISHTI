@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, View, Button, FileSystem, TouchableOpacity, Text } from 'react-native';
 import { Audio } from 'expo-av';
-
+import  base_url  from '../assets/base_url';
 // default component to be rendered from file
 const ImageCapture = ({ navigation, route }) => {
   const [recording, setRecording] = React.useState(); // react hook to store recording status
@@ -70,7 +70,7 @@ const ImageCapture = ({ navigation, route }) => {
       })
 
       // send post request to django server
-      fetch('http://192.168.0.28:8000', {
+      fetch(base_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',
