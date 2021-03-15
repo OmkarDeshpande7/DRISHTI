@@ -1,4 +1,4 @@
-# BE_PROJECT
+# Configurations
 
 VQA App developer documentation  v0.0: 
 
