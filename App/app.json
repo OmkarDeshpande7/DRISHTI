@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tap",
-    "slug": "app",
+    "name": "SafeWalk",
+    "slug": "SafeWalk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png", 

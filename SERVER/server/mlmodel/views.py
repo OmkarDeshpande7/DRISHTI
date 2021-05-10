@@ -1,13 +1,9 @@
-import soundfile
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 import io
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from IPython.display import display, Image
-import speech_recognition as sr
-import soundfile as sf
-from mlmodel.mlmodel import Process
 
 
 # Create your views here.
