@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, View, Button, FileSystem, TouchableOpacity, Text } from 'react-native';
 import { Audio } from 'expo-av';
+import * as Speech from 'expo-speech';
 import  base_url  from '../assets/base_url';
 // default component to be rendered from file
 const ImageCapture = ({ navigation, route }) => {
@@ -26,6 +27,7 @@ const ImageCapture = ({ navigation, route }) => {
       await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
       await recording.startAsync();   // started
       setRecording(recording);
+      Speech.speak("Ask question now.");
       console.log('Recording started');
     } catch (err) {
       console.error('Failed to start recording', err);
@@ -40,11 +42,7 @@ const ImageCapture = ({ navigation, route }) => {
     await Audio.setIsEnabledAsync(true);
     await recording.stopAndUnloadAsync();
     const audioUrl = recording.getURI();    // get the recording uri at the local file storage.
-
-
-
-
-
+    Speech.speak("Recording stopped. Wait for the answer.");
 
     console.log('Recording stopped and stored at', audioUrl);
     let sound = new Audio.Sound();
@@ -91,11 +89,12 @@ const ImageCapture = ({ navigation, route }) => {
   // UI components rendering
   return ( 
     <View>
-      <Image source={{ uri: route.params.uri }} style={styles.stretch} />
-      <TouchableOpacity style={styles.button}
+            <TouchableOpacity style={styles.button}
 
-        onPress={recording ? stopRecording : startRecording}>
-        <Text style={styles.text}>{recording ? 'Stop Recording' : 'Start Recording'}</Text>
+onPress={recording ? stopRecording : startRecording}>
+      <Image source={{ uri: route.params.uri }} style={styles.stretch} />
+
+        {/* <Text style={styles.text}>{recording ? 'Stop Recording' : 'Start Recording'}</Text> */}
       </TouchableOpacity>
 
     </View>
@@ -113,11 +112,11 @@ const styles = StyleSheet.create({
   },
   stretch: {
     width: 400,
-    height: 500,
+    height: 800,
     resizeMode: 'stretch',
   },
   button: {
-    height: 200,
+    height: 800,
     justifyContent: 'center',
     alignItems: 'center'
 

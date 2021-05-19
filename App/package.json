@@ -15,7 +15,7 @@
     "expo": "~40.0.0",
     "expo-av": "~8.7.0",
     "expo-camera": "~9.1.0",
-    "expo-speech": "^9.0.0",
+    "expo-speech": "~8.5.0",
     "expo-status-bar": "~1.0.3",
     "path": "^0.12.7",
     "querystring": "^0.2.1",
