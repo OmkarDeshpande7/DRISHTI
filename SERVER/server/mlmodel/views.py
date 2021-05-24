@@ -11,7 +11,7 @@ from IPython.display import display, Image
 def indexPage(request):
     # getting the audio files from the post request sent by the app
     f = request.FILES['file']
-    with open('audio.mp3', 'wb+') as destination:
+    with open('audio.wav', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 

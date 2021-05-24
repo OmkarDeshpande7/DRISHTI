@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "SafeWalk",
-    "slug": "SafeWalk",
+    "name": "Drishti",
+    "slug": "Drishti",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png", 
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
