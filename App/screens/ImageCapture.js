@@ -45,7 +45,6 @@ const ImageCapture = ({ navigation, route }) => {
     Speech.speak("Recording stopped. Wait for the answer.");
 
     console.log('Recording stopped and stored at', audioUrl);
-    let sound = new Audio.Sound();
 
 
     // try to send both the files to deployment server for further processing
