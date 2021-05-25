@@ -1,17 +1,15 @@
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
-import io
+from django.http import JsonResponse
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from IPython.display import display, Image
+import requests
 
 
 # Create your views here.
-@csrf_exempt    
+@csrf_exempt
 def indexPage(request):
     # getting the audio files from the post request sent by the app
     f = request.FILES['file']
-    with open('audio.wav', 'wb+') as destination:
+    with open('audio.m4a', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -21,22 +19,22 @@ def indexPage(request):
         for chunk in f1.chunks():
             destination.write(chunk)
 
-    
     return HttpResponse("<h1>Successful !</h1>")
 
-def get_file_binary(request, f):
-    # display(Image(filename='image.jpg'))
 
-    file_obj = io.BytesIO()  # create file-object
-    file_obj.write(f.read())  # write in file-object
-    file_obj.seek(0)  # move to beginning so it will read from beginning
-    # print(file_obj)
-    r = sr.Recognizer()
-    mic = sr.AudioFile(file_obj)  # use file-object
-    with mic as source:
-        audio = r.record(source) # extract audio data from the file
-    try:
-        print("Transcription: " + r.recognize_google(audio))  # recognize speech using Google Speech Recognition
-    except LookupError:  # speech is unintelligible
-        print("Could not understand audio")
+@csrf_exempt
+def get_prediction(request):
+    url = 'http://7b856643a1b7.ngrok.io/'
+    image = request.FILES['file2']
+    audio = request.FILES['file']
+    data = {'file': audio, 'file2': image}
+    # get_file_binary(audio)
+
+    # r = requests.post(url=url, files=data)
+    # print(type(r.json()))
+    # return JsonResponse({'ans': r.json()})
+    return JsonResponse({'ans':{'answer':'that is cool'}})
+
+
+def get_file_binary(f):
     pass

@@ -19,4 +19,5 @@ from mlmodel import views
 
 urlpatterns = [
     path('', views.indexPage),
+    path('predict',views.get_prediction),
 ]

@@ -23,6 +23,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-camera": "^3.42.2",
+    "react-native-double-tap": "^1.0.1",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-google-speech-to-text": "^1.0.4",

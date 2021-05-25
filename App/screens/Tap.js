@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as Speech from 'expo-speech';
 
 // default component to be rendered from file
 export default function Tap(props) {
@@ -29,7 +30,7 @@ export default function Tap(props) {
         console.log("Camera")
    
         let photo = await this.camera.takePictureAsync({quality:0.3});
-
+        Speech.speak("Tap the screen and ask your question.");
         console.log(photo.uri);
         props.navigation.navigate('ImageCapture', { uri: photo.uri })
     }

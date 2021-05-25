@@ -20,14 +20,15 @@ const ImageCapture = ({ navigation, route }) => {
       });
 
       //start a new recording
+      
       console.log('Starting recording..');
       const recording = new Audio.Recording();
-
+      
       //setting flag to record high quality audio
       await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
       await recording.startAsync();   // started
       setRecording(recording);
-      Speech.speak("Ask question now.");
+      
       console.log('Recording started');
     } catch (err) {
       console.error('Failed to start recording', err);
@@ -73,9 +74,10 @@ const ImageCapture = ({ navigation, route }) => {
           'Content-Type': 'multipart/form-data',
         },
         body: data,     //added FormData object
-      }).then((response) => {
-        // console.log(response);
-        navigation.navigate('ResultPage', { uri: route.params.uri })
+      }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson.ans);
+        navigation.navigate('ResultPage', { uri: route.params.uri, ans : responseJson.ans })
       });
 
     } catch (error) {

@@ -1,3 +1,3 @@
-const frontend_base_url = 'http://192.168.1.9:8000/predict'
+const frontend_base_url = 'http://omkardeshpande.pythonanywhere.com/predict'
   
   export default frontend_base_url;
