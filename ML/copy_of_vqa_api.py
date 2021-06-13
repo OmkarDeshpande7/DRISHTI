@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """Copy of VQA_API.ipynb
 
@@ -20,31 +21,31 @@ Press "Shift + Enter" to run each cell sequentially. Alternatively, you can pres
 # Download Pre-requisites needed for running the e2e model
 # %cd /
 # %mkdir model_data
-!wget -O /model_data/answers_vqa.txt https://dl.fbaipublicfiles.com/pythia/data/answers_vqa.txt
-!wget -O /model_data/vocabulary_100k.txt https://dl.fbaipublicfiles.com/pythia/data/vocabulary_100k.txt
-!wget -O /model_data/detectron_model.pth  https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.pth 
-!wget -O /model_data/pythia.pth https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.pth
-!wget -O /model_data/pythia.yaml https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.yml
-!wget -O /model_data/detectron_model.yaml https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.yaml
-!wget -O /model_data/detectron_weights.tar.gz https://dl.fbaipublicfiles.com/pythia/data/detectron_weights.tar.gz
-!tar xf /model_data/detectron_weights.tar.gz
+os.system('wget -O /model_data/answers_vqa.txt https://dl.fbaipublicfiles.com/pythia/data/answers_vqa.txt')
+os.system('wget -O /model_data/vocabulary_100k.txt https://dl.fbaipublicfiles.com/pythia/data/vocabulary_100k.txt')
+os.system('wget -O /model_data/detectron_model.pth  https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.pth')
+os.system('wget -O /model_data/pythia.pth https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.pth')
+os.system('wget -O /model_data/pythia.yaml https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.yml')
+os.system('wget -O /model_data/detectron_model.yaml https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.yaml')
+os.system('wget -O /model_data/detectron_weights.tar.gz https://dl.fbaipublicfiles.com/pythia/data/detectron_weights.tar.gz')
+os.system('tar xf /model_data/detectron_weights.tar.gz')
 
 """## Now, install some particular dependencies"""
 
 # Install dependencies
-!pip install yacs cython matplotlib
-!pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI
+os.system('pip install yacs cython matplotlib')
+os.system('pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI')
 
 """## Install MMF now"""
 
 # Commented out IPython magic to ensure Python compatibility.
 # %cd /
 # %rm -rf mmf
-!git clone https://github.com/facebookresearch/mmf.git mmf
+os.system('git clone https://github.com/facebookresearch/mmf.git mmf')
 # %cd /mmf
 # Don't modify torch version
-!sed -i '/torch/d' requirements.txt
-!pip install -e .
+os.system('sed -i '/torch/d' requirements.txt')
+os.system('pip install -e .')
 import sys
 sys.path.append("/mmf")
 
@@ -53,11 +54,11 @@ sys.path.append("/mmf")
 # Commented out IPython magic to ensure Python compatibility.
 # Install maskrcnn-benchmark to extract detectron features
 # %cd /content
-!git clone https://gitlab.com/meetshah1995/vqa-maskrcnn-benchmark.git
+os.system('git clone https://gitlab.com/meetshah1995/vqa-maskrcnn-benchmark.git')
 # %cd /vqa-maskrcnn-benchmark
 # Compile custom layers and build mask-rcnn backbone
-!python setup.py build
-!python setup.py develop
+os.system('python setup.py build')
+os.system('python setup.py develop')
 sys.path.append('/vqa-maskrcnn-benchmark')
 
 """## Demo
@@ -65,11 +66,11 @@ sys.path.append('/vqa-maskrcnn-benchmark')
 The class handles everything from feature extraction, token extraction and predicting the answer
 """
 
-!pip install pytorch_lightning
+os.system('pip install pytorch_lightning')
 
 # Commented out IPython magic to ensure Python compatibility.
 # %cd /
-!sed -i 's/PY3/PY37/g' /vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py 
+os.system('sed -i 's/PY3/PY37/g' /vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py')
 import yaml
 import cv2
 import torch
@@ -393,8 +394,8 @@ Image URL can be any http/https URL. We show top 5 predictions from MMF. Confide
 
 """#STT"""
 
-!pip install pydub
-!pip install SpeechRecognition
+os.system('pip install pydub')
+os.system('pip install SpeechRecognition')
 import sys
 import os
 import time
@@ -441,7 +442,7 @@ def inference(img_path, ques):
 # tt = Image.open('/testttt.jpg')
 # tt.save('infer.jpg')
 
-!pip install flask-ngrok
+os.system('pip install flask-ngrok')
 
 audio1 = ''
 
