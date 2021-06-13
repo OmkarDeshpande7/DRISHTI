@@ -47,13 +47,13 @@ React-native :
 Use the following command to install react native on your machine.
 
 
-npm install -g react-native-cli
+```npm install -g react-native-cli```
 
 
 Expo-cli : 
 Expo is a framework and a platform for universal React applications. It is a set of tools and services built around React Native and native platforms that help you develop, build, deploy, and quickly iterate on iOS, Android, and web apps from the same JavaScript/TypeScript codebase.
 
-npm install -g expo-cli
+```npm install -g expo-cli```
 
 
 Python
@@ -64,12 +64,12 @@ Pip
 Python >=3.4 can self-bootstrap pip with the built-in ensurepip module. Refer to the standard library documentation for more details. Make sure to upgrade pip after ensurepip installs pip.
 To manually install pip, securely  download get-pip.py by following this link: get-pip.py. Alternatively, use curl:
 
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+```curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py```
 
 
 Then run the following command in the folder where you have downloaded get-pip.py:
 
-python get-pip.py
+```python get-pip.py```
 
 
 
@@ -78,14 +78,14 @@ python get-pip.py
 Django 
 Use the following command to install Django on your machine 
 
-Python -m pip install django
+```Python -m pip install django```
 
 
 Github 
 For linux based OS use following command in terminal to install git
 
 
-sudo apt install git-all
+```sudo apt install git-all```
 
 
 For Windows OS you can download and install git from the following sources.
@@ -94,18 +94,18 @@ https://git-scm.com/download/win
 Deployment
 First of all download the project folder by executing following command in terminal
 
-git clone https://github.com/OmkarDeshpande7/BE_PROJECT.git
+```git clone https://github.com/OmkarDeshpande7/BE_PROJECT.git```
 
 
 In step 2 navigate to the “server” folder and run the following command
 
-Python manage.py runserver <your-ip-address>
+```Python manage.py runserver <your-ip-address>```
 
 
 You can find your own ip address by using the “ipconfig” command on Windows and “ifconfig” command on linux.
 ***NOTE : The model will be already trained and included in the server code. No need to train model again***
 In step 3 open a new terminal, navigate to the “App” folder and run the following command.
-
+### Though the code is still available in the ML folder. You can just run the (.py) file to get the model.
 
 npm install
 
