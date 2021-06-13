@@ -18,16 +18,16 @@ Press "Shift + Enter" to run each cell sequentially. Alternatively, you can pres
 
 # Commented out IPython magic to ensure Python compatibility.
 # Download Pre-requisites needed for running the e2e model
-# %cd /content/
+# %cd /
 # %mkdir model_data
-!wget -O /content/model_data/answers_vqa.txt https://dl.fbaipublicfiles.com/pythia/data/answers_vqa.txt
-!wget -O /content/model_data/vocabulary_100k.txt https://dl.fbaipublicfiles.com/pythia/data/vocabulary_100k.txt
-!wget -O /content/model_data/detectron_model.pth  https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.pth 
-!wget -O /content/model_data/pythia.pth https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.pth
-!wget -O /content/model_data/pythia.yaml https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.yml
-!wget -O /content/model_data/detectron_model.yaml https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.yaml
-!wget -O /content/model_data/detectron_weights.tar.gz https://dl.fbaipublicfiles.com/pythia/data/detectron_weights.tar.gz
-!tar xf /content/model_data/detectron_weights.tar.gz
+!wget -O /model_data/answers_vqa.txt https://dl.fbaipublicfiles.com/pythia/data/answers_vqa.txt
+!wget -O /model_data/vocabulary_100k.txt https://dl.fbaipublicfiles.com/pythia/data/vocabulary_100k.txt
+!wget -O /model_data/detectron_model.pth  https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.pth 
+!wget -O /model_data/pythia.pth https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.pth
+!wget -O /model_data/pythia.yaml https://dl.fbaipublicfiles.com/pythia/pretrained_models/vqa2/pythia_train_val.yml
+!wget -O /model_data/detectron_model.yaml https://dl.fbaipublicfiles.com/pythia/detectron_model/detectron_model.yaml
+!wget -O /model_data/detectron_weights.tar.gz https://dl.fbaipublicfiles.com/pythia/data/detectron_weights.tar.gz
+!tar xf /model_data/detectron_weights.tar.gz
 
 """## Now, install some particular dependencies"""
 
@@ -38,15 +38,15 @@ Press "Shift + Enter" to run each cell sequentially. Alternatively, you can pres
 """## Install MMF now"""
 
 # Commented out IPython magic to ensure Python compatibility.
-# %cd /content/
+# %cd /
 # %rm -rf mmf
 !git clone https://github.com/facebookresearch/mmf.git mmf
-# %cd /content/mmf
+# %cd /mmf
 # Don't modify torch version
 !sed -i '/torch/d' requirements.txt
 !pip install -e .
 import sys
-sys.path.append("/content/mmf")
+sys.path.append("/mmf")
 
 """## Install maskrcnn-benchmark now"""
 
@@ -54,11 +54,11 @@ sys.path.append("/content/mmf")
 # Install maskrcnn-benchmark to extract detectron features
 # %cd /content
 !git clone https://gitlab.com/meetshah1995/vqa-maskrcnn-benchmark.git
-# %cd /content/vqa-maskrcnn-benchmark
+# %cd /vqa-maskrcnn-benchmark
 # Compile custom layers and build mask-rcnn backbone
 !python setup.py build
 !python setup.py develop
-sys.path.append('/content/vqa-maskrcnn-benchmark')
+sys.path.append('/vqa-maskrcnn-benchmark')
 
 """## Demo
 
@@ -68,8 +68,8 @@ The class handles everything from feature extraction, token extraction and predi
 !pip install pytorch_lightning
 
 # Commented out IPython magic to ensure Python compatibility.
-# %cd /content/
-!sed -i 's/PY3/PY37/g' /content/vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py 
+# %cd /
+!sed -i 's/PY3/PY37/g' /vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py 
 import yaml
 import cv2
 import torch
@@ -134,8 +134,8 @@ class MMFDemo:
     text_processor_config = vqa_config.processors.text_processor
     answer_processor_config = vqa_config.processors.answer_processor
     
-    text_processor_config.params.vocab.vocab_file = "/content/model_data/vocabulary_100k.txt"
-    answer_processor_config.params.vocab_file = "/content/model_data/answers_vqa.txt"
+    text_processor_config.params.vocab.vocab_file = "/model_data/vocabulary_100k.txt"
+    answer_processor_config.params.vocab_file = "/model_data/answers_vqa.txt"
     # Add preprocessor as that will needed when we are getting questions from user
     self.text_processor = VocabProcessor(text_processor_config.params)
     self.answer_processor = VQAAnswerProcessor(answer_processor_config.params)
@@ -146,9 +146,9 @@ class MMFDemo:
                       self.answer_processor.get_vocab_size())
     
   def _build_pythia_model(self):
-    state_dict = torch.load('/content/model_data/pythia.pth')
+    state_dict = torch.load('/model_data/pythia.pth')
     model_config = self.config.model_config.pythia
-    model_config.model_data_dir = "/content/"
+    model_config.model_data_dir = "/"
     model = Pythia(model_config)
     model.build()
     model.init_losses()
@@ -229,11 +229,11 @@ class MMFDemo:
   
   def _build_detection_model(self):
 
-      cfg.merge_from_file('/content/model_data/detectron_model.yaml')
+      cfg.merge_from_file('/model_data/detectron_model.yaml')
       cfg.freeze()
 
       model = build_detection_model(cfg)
-      checkpoint = torch.load('/content/model_data/detectron_model.pth', 
+      checkpoint = torch.load('/model_data/detectron_model.pth', 
                               map_location=torch.device("cpu"))
 
       load_state_dict(model, checkpoint.pop("model"))
@@ -438,7 +438,7 @@ def inference(img_path, ques):
   })
   return df['Prediction'][0]
 
-# tt = Image.open('/content/testttt.jpg')
+# tt = Image.open('/testttt.jpg')
 # tt.save('infer.jpg')
 
 !pip install flask-ngrok
