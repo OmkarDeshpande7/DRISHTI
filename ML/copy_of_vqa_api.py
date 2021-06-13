@@ -44,7 +44,7 @@ os.system('pip install git+https://github.com/cocodataset/cocoapi.git#subdirecto
 os.system('git clone https://github.com/facebookresearch/mmf.git mmf')
 # %cd /mmf
 # Don't modify torch version
-os.system('sed -i '/torch/d' requirements.txt')
+os.system("sed -i '/torch/d' requirements.txt")
 os.system('pip install -e .')
 import sys
 sys.path.append("/mmf")
@@ -70,7 +70,7 @@ os.system('pip install pytorch_lightning')
 
 # Commented out IPython magic to ensure Python compatibility.
 # %cd /
-os.system('sed -i 's/PY3/PY37/g' /vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py')
+os.system("sed -i 's/PY3/PY37/g' /vqa-maskrcnn-benchmark/maskrcnn_benchmark/utils/imports.py")
 import yaml
 import cv2
 import torch
