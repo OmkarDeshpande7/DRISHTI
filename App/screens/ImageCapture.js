@@ -93,9 +93,8 @@ const ImageCapture = ({ navigation, route }) => {
             <TouchableOpacity style={styles.button}
 
 onPress={recording ? stopRecording : startRecording}>
-      <Image source={{ uri: route.params.uri }} style={styles.stretch} />
 
-        {/* <Text style={styles.text}>{recording ? 'Stop Recording' : 'Start Recording'}</Text> */}
+        <Text style={styles.text}>{recording ? 'Stop Recording' : 'Start Recording'}</Text>
       </TouchableOpacity>
 
     </View>
@@ -122,5 +121,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
 
   },
-
+  text: {
+    fontSize: 30,
+    color: 'black',
+    fontWeight:'bold',
+    textAlign : 'center'
+  },
 });

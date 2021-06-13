@@ -33,7 +33,7 @@ def get_prediction(request):
     # r = requests.post(url=url, files=data)
     # print(type(r.json()))
     # return JsonResponse({'ans': r.json()})
-    return JsonResponse({'ans':{'answer':'that is cool'}})
+    return JsonResponse({'ans':{'answer':'yes'}})
 
 
 def get_file_binary(f):
